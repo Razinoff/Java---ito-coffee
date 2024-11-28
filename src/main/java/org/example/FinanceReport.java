@@ -2,12 +2,13 @@ package org.example;
 import java.util.Arrays;
 
 public class FinanceReport {
+    //Поля
     private Payment[] payments;
     private String authorFullName;
     private int day;
     private int month;
     private int year;
-
+    //Копирование
     public FinanceReport(FinanceReport that) {
         this.authorFullName = that.authorFullName;
         this.day = that.day;
@@ -19,7 +20,7 @@ public class FinanceReport {
             this.payments[i] = new Payment(that.payments[i]);
         }
     }
-
+    //Конструктор
     public FinanceReport(String authorFullName, int day, int month, int year, Payment[] payments) {
         this.authorFullName = authorFullName;
         this.day = day;
@@ -31,7 +32,7 @@ public class FinanceReport {
             this.payments[i] = new Payment(payments[i]); // Создаем копии платежей
         }
     }
-
+    //Гетеры
     public String getAuthorFullName() {
         return authorFullName;
     }
@@ -44,10 +45,11 @@ public class FinanceReport {
     public int getYear() {
         return year;
     }
-
+    //Количество платежников
     public int getCountOfPayments() {
         return payments.length;
     }
+    //Конкретный платеж платежника
     public Payment getPayment(int index) {
         if (index >= 0 && index < payments.length) {
             return payments[index];
@@ -56,11 +58,11 @@ public class FinanceReport {
         }
     }
 
-
+    //Копию массива всех платежей
     public Payment[] getPayments() {
         return Arrays.copyOf(payments, payments.length);
     }
-
+    //Устанавливает новый платеж в массив
     public void setPayment(int index, Payment payment) {
         if (index >= 0 && index < payments.length) {
             payments[index] = payment;
@@ -68,12 +70,12 @@ public class FinanceReport {
             throw new IndexOutOfBoundsException("Invalid index: " + index);
         }
     }
-
+    //Преобразует в строку
     @Override
     public String toString() {
         StringBuilder report = new StringBuilder();
 
-        report.append(String.format("Автор: %s, дата: %02d.%02d.%d | Платежи: \n", authorFullName, day, month, year));
+        report.append(String.format("[Автор: %s, дата: %02d.%02d.%d [ Платежи: \n", authorFullName, day, month, year));
 
         for (int i = 0; i <  payments.length; i++) {
             int rub = payments[i].getAmountInKopecks() / 100;
@@ -86,6 +88,7 @@ public class FinanceReport {
             report.append(String.format(" Плательщик: %s, дата: %02d.%02d.%d, сумма: %d руб. %02d коп.\n",
                     payments[i].getFullName(), payments[i].getDay(), payments[i].getMonth(), payments[i].getYear(), rub, kopecks));
         }
+        report.append("]]");
 
 
         return report.toString();

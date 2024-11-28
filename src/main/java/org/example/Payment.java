@@ -3,15 +3,15 @@ package org.example;
 import java.util.Objects;
 
 public class Payment {
-
+    //Поля
     private String fullName;
     private int day;
     private int month;
     private int year;
     private int amountInKopecks;
-
+    //Конструктор
     public  Payment() {}
-
+    //Конструктор с пар
     public Payment(String fullName, int day, int month, int year, int amountInKopecks) {
         this.fullName = fullName;
         this.day = day;
@@ -19,7 +19,7 @@ public class Payment {
         this.year = year;
         this.amountInKopecks = amountInKopecks;
     }
-
+    //Копируем
     public Payment(Payment that) {
         this.fullName = that.fullName;
         this.day = that.day;
@@ -27,7 +27,7 @@ public class Payment {
         this.year = that.year;
         this.amountInKopecks = that.amountInKopecks;
     }
-
+    //Гетеры
     public String getFullName() {
         return fullName;
     }
@@ -44,7 +44,7 @@ public class Payment {
         return amountInKopecks;
     }
 
-
+    //Сетер
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -60,7 +60,7 @@ public class Payment {
     public void setAmountInKopecks(int amountInKopecks) {
         this.amountInKopecks = amountInKopecks;
     }
-
+    //Сравнение
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -73,12 +73,12 @@ public class Payment {
                 amountInKopecks == payment.amountInKopecks &&
                 Objects.equals(fullName, payment.fullName);
     }
-
+    //Наш любимый хешкод
     @Override
     public int hashCode() {
         return Objects.hash(fullName, day, month, year, amountInKopecks);
     }
-
+    //Преобразует в строку
     @Override
     public String toString() {
         return "Payment(" +
